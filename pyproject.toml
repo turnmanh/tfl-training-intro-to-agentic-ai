@@ -1,9 +1,9 @@
 [project]
-name = "exploration-langchain-studio"
+name = "tfl-training-intro-agentic-ai"
 version = "0.1.0"
-description = "Add your description here"
+description = "Material for the TransferLab training of Introduction to Agentic AI."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<4.0"
 dependencies = [
     "langchain>=0.3.27",
     "langchain-google-genai>=2.1.12",
