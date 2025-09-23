@@ -1,0 +1,11 @@
+{
+  "$schema": "https://langgra.ph/schema.json",
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "agent": "src/agent.py:app"
+  },
+  "image_distro": "wolfi",
+  "env": "./.env"
+}
