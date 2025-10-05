@@ -5,9 +5,16 @@ description = "Material for the TransferLab training of Introduction to Agentic 
 readme = "README.md"
 requires-python = ">=3.11,<4.0"
 dependencies = [
+    "black>=25.9.0",
+    "fastmcp>=2.12.4",
     "langchain>=0.3.27",
     "langchain-google-genai>=2.1.12",
+    "langchain-mcp-adapters>=0.1.11",
     "langgraph>=0.6.7",
     "langgraph-cli[inmem]>=0.4.2",
+    "mcp>=1.15.0",
+    "polars>=1.34.0",
+    "pyarrow>=21.0.0",
     "python-dotenv>=1.1.1",
+    "yfinance>=0.2.66",
 ]
