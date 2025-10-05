@@ -26,11 +26,21 @@ configurations provided in the CLI.
 fastmcp run yahoo_finance.py:mcp --transport <TRANSPORT> --port <PORT>
 ```
 
-Or in this specific case:
+Or in this specific case ...
 
 ```bash
 uv run fastmcp run src/tools/finance_tools/yahoo_finance.py:mcp --transport http --port 9090
 ```
+
+... and, as we've included a `if __name__ == "__main__":` block, we can also run
+the server like so:
+
+```bash
+uv run python -m src.tools.finance_tools.yahoo_finance
+```
+
+Note, in the last case the server draws the configuration from
+`src.config.mcp_config`.
 
 ## Calling the Server
 
