@@ -42,7 +42,7 @@ def fuzzy_search_ticker(company_name: str, ticker: str | None = None) -> str:
      - Multi-agent systems in LangGraph:
        https://langchain-ai.github.io/langgraph/concepts/multi_agent/#supervisor
      - Multi-agent research system by Anthropic:
-       https://www.anthropic.com/engineering/writing-tools-for-agents 
+       https://www.anthropic.com/engineering/multi-agent-research-system
 
     Args:
         company_name: The name of the company to search the ticker for.
