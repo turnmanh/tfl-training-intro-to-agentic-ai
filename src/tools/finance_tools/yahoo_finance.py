@@ -23,7 +23,7 @@ from src.tools.finance_tools.finance_utils import (
 )
 
 
-mcp = FastMCP("Yahoo Fiance Tools")
+mcp = FastMCP("Yahoo Finance Tools")
 
 
 # EXAMPLE TOOL:
