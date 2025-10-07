@@ -8,9 +8,6 @@ However, for demonstration purposes, we keep it this way - simple.
 """
 
 import json
-import os
-import pandas as pd
-import polars as pl
 import yfinance as yf
 
 from fastmcp import FastMCP
