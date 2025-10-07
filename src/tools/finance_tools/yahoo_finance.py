@@ -1,8 +1,10 @@
 """
 MCP Server to provide tools for financial data using Yahoo Finance API.
 
-Note, right now, there's lot's of logic in the tools. Ideally, this logic is
-abstracted and the tools just provide a thin interface to the underlying logic.
+Note, right now, there's more logic in the tools than just retrieving the
+information. Ideally, this logic is abstracted and the tools just provide a thin
+interface to the underlying logic. This is hinted by the functionality provided
+by ./finance_utils.py.
 
 However, for demonstration purposes, we keep it this way - simple.
 """
