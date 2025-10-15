@@ -1,6 +1,6 @@
 # Yahoo Finance MCP Server 
 
-## Inspection 
+## Inspection 🔍
 
 To inspect the server and its tools, you can use the [MCP
 Inspector](https://github.com/modelcontextprotocol/inspector). This tool allows
@@ -10,7 +10,7 @@ to list and call all tools, prompts, and resources provided by the MCP server.
 npx @modelcontextprotocol/inspector
 ```
 
-## Execution
+## Execution 🏃🏼‍♀️
 
 There are several options to run the server. First, we've followed standard
 practices and included a `if __name__ == "__main__":` block at the end of the
@@ -42,7 +42,7 @@ uv run python -m src.tools.finance_tools.yahoo_finance
 Note, in the last case the server draws the configuration from
 `src.config.mcp_config`.
 
-## Calling the Server
+## Calling the Server 📞
 
 Irrespective of how the server is run, it can be accessed using a FastMCP
 client. FastMCP clients are asynchronous and therefore require an async context.

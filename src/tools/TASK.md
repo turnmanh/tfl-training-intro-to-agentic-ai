@@ -17,8 +17,8 @@ You can find a sample tool in `./weather_tools.py`, which is essentially just a
 placeholder as it cannot do anything useful up to now. The tool itself is
 provided to the agent via the list of `tools`, created in `./__init__.py`.
 
-Your **task** is to implement a useful tool that can be used by the agent. Feel
-free to tackle any problem you like, not necessarily related to weather. 
+⚠️ Your **task** is to implement a useful tool that can be used by the agent.
+Feel free to tackle any problem you like, not necessarily related to weather. 
 
 In case you don't know where to start, here are some ideas:
 - A tool for integer calculations (e.g., addition, subtraction, multiplication,
