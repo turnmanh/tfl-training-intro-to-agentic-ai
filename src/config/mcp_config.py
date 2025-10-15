@@ -14,8 +14,8 @@ class MCPConfig(BaseModel):
     host: str = Field(
         description="The host to bind the MCP server to.", default="127.0.0.1"
     )
-    transport_protocol: Literal["stdio", "streamable_http", "sse"] = Field(
-        description="The protocol to use.", default="streamable_http"
+    transport_protocol: Literal["stdio", "streamable-http", "sse"] = Field(
+        description="The protocol to use.", default="streamable-http"
     )
     port: int = Field(description="The port to bind the MCP server to.", default=9090)
 
