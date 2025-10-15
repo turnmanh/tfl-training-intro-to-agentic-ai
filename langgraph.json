@@ -4,7 +4,7 @@
     "."
   ],
   "graphs": {
-    "agent": "src/agent.py:app"
+    "agent": "src/agents/react_agent.py:app"
   },
   "image_distro": "wolfi",
   "env": "./.env"

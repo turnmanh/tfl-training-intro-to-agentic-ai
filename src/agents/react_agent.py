@@ -19,6 +19,7 @@ tool_node = ToolNode(tools)
 
 class State(TypedDict):
     """State of the agent."""
+
     messages: Annotated[list[BaseMessage], operator.add]
 
 
@@ -45,9 +46,11 @@ def invoke_agent(state: State) -> dict:
 # Construct the graph.
 flow = StateGraph(State)
 
+
 # Add the central nodes of an agentic system.
 flow.add_node("agent", invoke_agent)
 flow.add_node("tool_node", tool_node)
+
 
 # Now, connect the nodes together using edges.
 # Set the entrypoint of the system. There are two ways to do this:
@@ -66,4 +69,28 @@ flow.add_conditional_edges(
 )
 flow.add_edge("tool_node", "agent")
 
+
+# Compile the graph into an executable app.
 app = flow.compile()
+
+
+def main():
+    """Run the agent graph in a loop."""
+    state: State = {"messages": []}
+
+    while True:
+        user_input = input("User: ")
+        # Allow to stop the loop via commands.
+        if user_input.lower() in {"exit", "quit", "q"}:
+            print("Exiting...")
+            break
+
+        state["messages"].append(HumanMessage(content=user_input))
+        for msg_chunk, _ in app.stream(state, stream_mode="messages"):  # type: ignore
+            if msg_chunk.content and isinstance(msg_chunk, AIMessage):  # type: ignore
+                print(msg_chunk.content, end="|", flush=True)
+        print("\n")
+
+
+if __name__ == "__main__":
+    main()
