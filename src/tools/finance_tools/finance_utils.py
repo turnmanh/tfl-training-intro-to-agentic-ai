@@ -10,7 +10,7 @@ def get_stocks_in_s_and_p_500() -> dict:
     Link: https://www.kaggle.com/datasets/andrewmvd/sp-500-stocks
 
     Returns:
-        A JSON containing the list of stocks in the S&P 500 index.
+        A dict containing the list of stocks in the S&P 500 index.
     """
     res: dict = {}
     # Read resource from disk.
