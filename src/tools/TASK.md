@@ -31,3 +31,23 @@ In case you don't know where to start, here are some ideas:
 
 ## Task 2 - Adding tools to a toolkit 
 
+We've provided a sample toolkit as MCP server in `./finance_tools/`. The server
+provides several tools to the agent, allowing it to fetch stock prices and
+other financial data.
+
+⚠️ Your **task** is to add another tool to the server. You can either implement
+a completely new tool or add another tool from the existing [Yahoo Finance
+API](https://ranaroussi.github.io/yfinance/). Make sure to separate the tool and
+the logic required s.t. the tool can be as lean as possible.
+
+💡 Make sure to provide well-written docstrings to the agent and incorporate
+type hints as much as possible. You've also learned about the use of pydantic to
+validate parameters. Finally, feel free to capitalize on the fact that the MCP
+can automatically parse the data. 
+
+In case you don't know where to start, here are some ideas:
+- The [200-day simple moving average](https://www.investopedia.com/ask/answers/013015/why-200-simple-moving-average-sma-so-common-traders-and-analysts.asp#:~:text=Key%20Takeaways-,The%20200%2Dday%20simple%20moving%20average%20(SMA)%20is%20a,potential%20support%20or%20resistance%20levels.) (SMA) for a given stock ticker
+- A variable X-day simple moving average for a given stock ticker, allowing to
+  incorporate the 50-day SMA as well. 
+- Find relatively "undervalued" stocks based on the [price-to-earnings
+  ratio](https://www.investopedia.com/terms/p/price-earningsratio.asp)
