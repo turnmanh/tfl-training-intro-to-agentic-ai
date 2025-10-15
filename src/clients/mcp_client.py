@@ -5,7 +5,7 @@ mcp_client = MultiServerMCPClient(
     {
         "yahoo_finance": {
             "url": "http://localhost:9090/mcp",
-            "transport": "streamable-http"
+            "transport": "streamable_http"
         }
     }
 )
