@@ -19,7 +19,19 @@ class GeminiModelConfig(ModelConfig):
     max_output_tokens: int = Field(default=1024, description="Maximum number of output tokens.")
 
 
+class OpenAIModelConfig(ModelConfig):
+    """Configuration specific to OpenAI models."""
+    model_name: str = "gpt-5" 
+    max_output_tokens: int = Field(default=2048, description="Maximum number of output tokens.")
+
+
 gemini_flash = GeminiModelConfig(
     api_key=os.getenv("GOOGLE_API_KEY", ""),
+    temperature=0.7,
+)
+
+
+openai_gpt5 = OpenAIModelConfig(
+    api_key=os.getenv("OPENAI_API_KEY", ""),
     temperature=0.7,
 )

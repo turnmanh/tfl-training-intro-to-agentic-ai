@@ -74,7 +74,7 @@ flow.add_edge("tool_node", "agent")
 app = flow.compile()
 
 
-def main():
+def stream_react_agent():
     """Run the agent graph in a loop."""
     state: State = {"messages": []}
 
@@ -92,5 +92,25 @@ def main():
         print("\n")
 
 
+def invoke_react_agent():
+    """Run the agent graph in a loop."""
+    state: State = {"messages": []}
+
+    while True:
+        user_input = input("User: ")
+        # Allow to stop the loop via commands.
+        if user_input.lower() in {"exit", "quit", "q"}:
+            print("Exiting...")
+            break
+
+        state["messages"].append(HumanMessage(content=user_input))
+        result = app.invoke(state)
+       
+        last_message = result["messages"][-1]
+        if isinstance(last_message, AIMessage) and last_message.content:
+            print(last_message.content)  # type: ignore
+        print()
+
+
 if __name__ == "__main__":
-    main()
+    invoke_react_agent()
