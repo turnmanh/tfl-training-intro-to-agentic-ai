@@ -14,44 +14,37 @@ title: Tool Engineering
 subtitle: Critical Component
 ---
 
-::grid{columns=1 gap=md width=90}
-:::box{color=grey text=lg}
+::grid{columns=2 gap=md width=100}
+:::box{color=grey}
 **Tools are central to most agentic systems**
 
-They deserve as much attention as your prompts
+They deserve as much attention as your prompts ‼️
 :::
 
-:::box{color=blue text=md}
-**How Tools Work:**
+:::box{color=blue }
+**How Tools Work**
 
-Enable Claude to interact with external services/APIs through specified structure and definition
+Enable LLMs to interact with external services/APIs through specified structure
+and definition, usually RPCs.
 
-Claude includes tool use block in API response when planning to invoke a tool
-:::
-::
-
----
-title: Tool Format Considerations
-subtitle: Format Matters for LLMs
----
-
-::grid{columns=1 gap=md width=90}
-:::box{color=dark-blue text=sm}
-**Example:** Specifying file edits
-- Write a diff (requires knowing line counts in advance)
-- Rewrite entire file
-:::
-
-:::box{color=blue text=sm}
-**Example:** Structured output
-- Code in markdown (natural)
-- Code in JSON (requires escaping newlines/quotes)
+Capable models include tool use blocks in API response when planning to invoke a tool.
 :::
 ::
 
-:vspace{size=sm}
+<br>
 
-*Some formats are much harder for LLMs to write, despite being functionally equivalent*
+**Example Tool Call Request**
+
+```txt
+User: what's the weather like in munich?
+...
+
+Tool Calls: [{'name': 'forecast_weather', 'args': {'location': 'munich'}, 'id': 'a01bd898-4dd7-4095-a87b-ca0aacda5fd2', 'type': 'tool_call'}]
+...
+
+The weather forecast for munich is [...]
+```
+
 
 ---
 title: Tool Format
@@ -150,40 +143,136 @@ Change arguments to make mistakes harder (error-proofing)
 :::
 ::
 
+
 ---
-title: Real Example
-subtitle: SWE-bench Tool Optimization
+title: Some Examples for Standardized Tooling
 ---
 
-::grid{columns=1 gap=md width=90}
-:::box{color=blue text=sm}
-**Context:** Building agent for SWE-bench
+::grid{columns=3 width=100 gap=md}
 
-*More time spent optimizing tools than overall prompt*
+<v-click>
+
+:::field{align=end span=1}
+::::imgx{src=./sections/shared_images/logo_atlassian.png}
+MCP-Atlassian
+::::
 :::
 
-:::box{color=grey text=sm}
-**❌ Problem:**
+</v-click>
+<v-click>
 
-Model made mistakes with relative filepaths after moving out of root directory
+:::field{align=end span=1}
+::::imgx{src=./sections/shared_images/logo_playwright.svg}
+Playwright MCP
+::::
 :::
 
-:::box{color=white text=sm}
-**✓ Solution:**
+</v-click>
+<v-click>
 
-Changed tool to always require absolute filepaths
+:::field{align=end span=1}
+::::imgx{src=./sections/shared_images/logo_mcp_registry.png}
+MCP Registry
+::::
 :::
 
-:::box{color=blue text=sm}
-**🎯 Result:**
+</v-click>
 
-Model used this method flawlessly
-:::
 ::
 
 
 ---
-title: Extending the ReAct Agent with More Tools ⌨️
+title: Model Context Protocol for Reference
+---
+
+::imgx{src=./sections/shared_images/mcp.png width=90}
+Illustration of MCP Components. Illustration from LangChain.
+::
+
+
+---
+title: Developing MCP Servers
+---
+
+Have a look into modules at `src/tools/finance_tools` for reference.
+
+```python
+mcp = FastMCP("Yahoo Finance Tools")
+...
+
+@mcp.tool(tags={"finance", "read", "info", "s+p500", "stocks"})
+def get_stocks_listed_in_s_and_p_500() -> str:
+    """Get the list of stocks listed in the S&P 500 index.
+
+    The data was obtained from kaggle with data from Q1 of 2025.
+    Link: https://www.kaggle.com/datasets/andrewmvd/sp-500-stocks
+
+    Returns:
+        A JSON string containing the list of stocks in the S&P 500 index.
+    """
+    stocks: dict = get_stocks_in_s_and_p_500()
+    return json.dumps(stocks, indent=2)
+```
+
+
+---
+title: Developing MCP Servers
+---
+
+Have a look into modules at `src/tools/finance_tools` for reference.
+
+```python
+@mcp.tool(tags={"finance", "read", "info"})
+def get_stock_price(
+    ticker: Annotated[
+        str,
+        Field(
+            ...,
+            description="The ticker identifying the stock. Search for it using the tool if it's not known to you.",
+        ),
+    ],
+) -> str:
+    """Get the current stock price for a given ticker symbol.
+        ...
+        ...
+```
+
+
+---
+title: Automatic Validation and Casting of Parameters 
+---
+
+MCP provides data parsing and validation. 
+
+Given: 
+```python
+@jira_mcp.tool(tags={"jira", "read"})
+async def get_issue(
+    ctx: Context,
+    ...
+```
+
+The agent's input is parsed as desired type, e.g., Context. This is achieved
+using the **spread operator** or **dictionary unpacking**.
+
+```python
+get_issue(ctx=Context(**llm_params), ...)
+```
+
+
+--- 
+title: Inspecting MCP Servers
+---
+
+Inspect tools, prompts, resources etc. provided by a MCP server via:
+
+```bash
+npx @modelcontextprotocol/inspector
+```
+
+
+---
+title: Extending the Tool Use Agent with More Tools ⌨️
 text: lg
 align: center
 ---
@@ -191,6 +280,10 @@ align: center
 1. Open the file `src/tools/TASK.md` and read the description of the **second** (2️⃣) task.
 2. Implement more tools for the MCP server by adding them in `src/tools/finance_tools/yahoo_finance.py` as needed. Feel free to
    implemented the suggested tools or create your own.
+3. Interact with your agent by running it as
+    ```bash
+    uv run python -m src.agents.tool_agent
+    ```
 
 
 ---

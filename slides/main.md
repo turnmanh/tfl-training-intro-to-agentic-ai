@@ -22,3 +22,7 @@ src: ./sections/intro_agentic_systems/slides.md
 ---
 src: ./sections/react_agent/slides.md
 ---
+
+---
+src: ./sections/tools/slides.md
+---
