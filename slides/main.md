@@ -16,5 +16,5 @@ src: ./sections/agenda/slides.md
 ---
 
 ---
-src: ./sections/building_blocks/slides.md
+src: ./sections/intro_agentic_systems/slides.md
 ---
