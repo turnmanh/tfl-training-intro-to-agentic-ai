@@ -1,4 +1,29 @@
 ---
+title: Wrapping Up - Three Core Principles Building Agentic Systems 
+---
+
+::grid{columns=1 gap=lg width=90}
+:::box{color=blue text=lg}
+**1️⃣ Maintain Simplicity**
+
+In your agent's design
+:::
+
+:::box{color=white text=lg}
+**2️⃣ Prioritize Transparency**
+
+Explicitly show agent's planning steps
+:::
+
+:::box{color=dark-blue text=lg}
+**3️⃣ Craft Agent-Computer Interface (ACI)**
+
+Through thorough tool documentation and testing
+:::
+::
+
+
+---
 title: Wrapping Up - The Shift to "AI that Does"
 ---
 
