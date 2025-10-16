@@ -28,3 +28,38 @@ lines: true
 | Hands-on: Memory in Agents | 15 min | 15:15 - 15:30 |
 | An Outlook to Orchestration | 15 min | 15:30 - 15:45 |
 | Q&A and Closing Remarks | 15 min | 15:45 - 16:00 |
+
+
+---
+title: Before we start ...
+align: center
+---
+
+::grid{cols=2 width=70}
+
+:::box{align=center justify=center span=1 text=lg color=white height=25}
+**Quick Round of introductions 👋🏼**
+:::
+
+<v-click>
+
+:::box{align=center justify=center span=1 color=dark-blue height=25}
+**... and what are you expecting from today's workshop❓**
+:::
+
+</v-click>
+
+::
+
+
+---
+title: Workshop Content via GitHub Codespaces
+---
+
+::grid{cols=1 width=70}
+:::field{align=end span=1}
+::::imgx{src=./sections/shared_images/screenshot_codespaces.png}
+The workshop's content and code is provided via GitHub Codespace.
+::::
+:::
+::
