@@ -18,3 +18,7 @@ src: ./sections/agenda/slides.md
 ---
 src: ./sections/intro_agentic_systems/slides.md
 ---
+
+---
+src: ./sections/react_agent/slides.md
+---
