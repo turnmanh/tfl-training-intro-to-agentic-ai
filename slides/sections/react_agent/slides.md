@@ -175,7 +175,8 @@ text: lg
 align: center
 ---
 
-1. Open the file `src/tools/TASK.md` and read the description of the **first** task.
+1. Open the file `src/tools/TASK.md` and read the description of the **first**
+   (1️⃣) task.
 2. Implement more tools in the `src/tools` directory as needed. Feel free to
    implemented the suggested tools or create your own.
 
@@ -187,6 +188,6 @@ align: center
 ---
 
 Feel free to share your agents! 🚀 <v-click> ... and then we can go into the
-lunch break! 🍽️ </v-click>
+**lunch** break! 🍽️ </v-click>
 
 

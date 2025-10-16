@@ -180,3 +180,23 @@ Changed tool to always require absolute filepaths
 Model used this method flawlessly
 :::
 ::
+
+
+---
+title: Extending the ReAct Agent with More Tools ⌨️
+text: lg
+align: center
+---
+
+1. Open the file `src/tools/TASK.md` and read the description of the **second** (2️⃣) task.
+2. Implement more tools for the MCP server by adding them in `src/tools/finance_tools/yahoo_finance.py` as needed. Feel free to
+   implemented the suggested tools or create your own.
+
+
+---
+title: What have you built? What have you learned?
+text: lg
+align: center
+---
+
+Feel free to share your agents! 🚀 <v-click> ... and then we can grab a **coffee**! ☕️ </v-click>
