@@ -15,8 +15,7 @@ from src.clients.llm_client import llm_client
 from src.clients.mcp_client import mcp_client
 
 
-# Create a checkpoint saver to store the state of each thread in memory.
-checkpoint_saver = InMemorySaver()
+# todo: create a checkpointer to create single checkpoints within a thread.
 
 
 class State(TypedDict):
@@ -41,8 +40,9 @@ async def create_react_agent_graph(mcp_session) -> CompiledStateGraph:
     tools_mcp = await load_mcp_tools(mcp_session)
     tools.extend(tools_mcp)
 
+    # todo: adapt to include a checkpointer.
     graph_react_agent = create_react_agent(
-        llm_client, tools, checkpointer=checkpoint_saver
+        llm_client, tools
     )
 
     return graph_react_agent
@@ -59,7 +59,7 @@ async def stream_agent():
 
         # Provide a thread ID to maintain memory across calls. Within each
         # thread, the checkpointer will save the state after each invocation.
-        config: RunnableConfig = {"configurable": {"thread_id": 1}}
+        # todo: create the required config to provide a thread id per execution.
 
         while True:
             user_input = input("User: ")
@@ -70,10 +70,10 @@ async def stream_agent():
 
             # Stream the agent's response.
             print("Agent: ", end="", flush=True)
+            # todo: Provide the config with thread id to the astream call.
             async for message_chunk, _ in agent_graph.astream(
                 {"messages": [HumanMessage(content=user_input)]},
                 stream_mode="messages",
-                config=config,
             ):
                 if message_chunk.content and isinstance(message_chunk, AIMessage):  # type: ignore
                     print(message_chunk.content, end="", flush=True)
@@ -92,8 +92,9 @@ async def invoke_agent():
                 print("Exiting ...")
                 break
 
+            # todo: Provide the config with thread id to the invocation call.
             result = await agent_graph.ainvoke(
-                {"messages": [HumanMessage(content=user_input)]}, config=config
+                {"messages": [HumanMessage(content=user_input)]}
             )
 
             last_message = result["messages"][-1]
