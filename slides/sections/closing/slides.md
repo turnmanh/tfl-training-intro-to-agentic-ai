@@ -1,4 +1,15 @@
 ---
+layout: Section
+---
+
+<div class="absolute top-50%">
+  <div style="text-align: left; font-size: 3rem;">
+    It's a Wrap! 🎬
+  </div>
+</div>
+
+
+---
 title: Wrapping Up - Three Core Principles Building Agentic Systems 
 ---
 
@@ -51,3 +62,39 @@ coordinate multiple AI agents.
 ::box{color=dark-blue span=3 height=15}
 ▶️ There's no such thing as free lunch!
 ::
+
+
+---
+title: Any last questions?
+align: center
+---
+
+::grid{cols=1 width=70}
+
+<v-click>
+
+:::box{align=center text=lg color=blue}
+Feel free to ask any last questions you might have! ... or approach us via
+email.
+:::
+
+</v-click>
+
+<br>
+<br>
+
+<v-click>
+
+:::box{align=center text=lg color=dark-blue}
+Thank you for participating in today's workshop! 
+
+We hope you enjoyed it and found it valuable. 🚀
+
+We'd love to hear your feedback! ➡️
+🔗[Survey](https://forms.gle/XVuCbmyaqMnheRbi8)
+:::
+
+</v-click>
+
+::
+

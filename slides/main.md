@@ -30,3 +30,7 @@ src: ./sections/tools/slides.md
 ---
 src: ./sections/memory/slides.md
 ---
+
+---
+src: ./sections/closing/slides.md
+---
