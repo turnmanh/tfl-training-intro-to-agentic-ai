@@ -1,0 +1,20 @@
+{
+  "name": "tfl-training-intro-agentic-ai",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "slidev --theme ./theme",
+    "build": "slidev build --theme ./theme",
+    "export": "slidev export --theme ./theme --dark"
+  },
+  "dependencies": {
+    "@slidev/cli": "^51.6.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwind-variants": "^3.1.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.52.0",
+    "prettier-plugin-tailwindcss": "^0.6.11"
+  }
+}

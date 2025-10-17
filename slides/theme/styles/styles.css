@@ -1,0 +1,49 @@
+body {
+    @apply bg-aai-slide;
+}
+
+.content {
+    h1 {
+        @apply mb-3 text-2xl font-semibold;
+    }
+
+    h2 {
+        @apply mb-3 text-xl font-semibold;
+    }
+
+    h3 {
+        @apply mb2 text-lg font-semibold;
+    }
+
+    p {
+        @apply text-md mb-2 font-normal;
+    }
+
+    pre {
+        @apply my-3;
+    }
+
+    ul {
+        @apply list-outside list-disc ml-5;
+
+        ul {
+            @apply ml-5;
+        }
+
+        ol {
+            @apply ml-5;
+        }
+    }
+
+    ol {
+        @apply list-outside list-decimal ml-7;
+
+        ol {
+            @apply ml-5;
+        }
+
+        ul {
+            @apply ml-5;
+        }
+    }
+}
