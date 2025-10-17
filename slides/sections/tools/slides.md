@@ -191,6 +191,28 @@ Illustration of MCP Components. Illustration from LangChain.
 
 
 ---
+title: Discussion
+---
+
+:::box{color=white text=lg}
+
+**⁉️**
+
+<hr
+style="
+height: 3px;
+background-color: #d6dde0ff;
+margin-top: 0.5rem;
+margin-bottom: 1rem;
+">
+
+In your personal / work live. What functionality would you **package and
+provide** in form of an external server?
+
+:::
+
+
+---
 title: Developing MCP Servers
 ---
 
