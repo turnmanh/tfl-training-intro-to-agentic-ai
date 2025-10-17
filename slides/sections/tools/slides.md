@@ -285,6 +285,17 @@ align: center
     uv run python -m src.agents.tool_agent
     ```
 
+<br>
+<br>
+
+<v-click>
+
+::box{align=center text=lg color=dark-blue}
+🔬 Feel free to try models of different complexities, e.g., gpt-5, mini, and nano.
+::
+
+</v-click>
+
 
 ---
 title: What have you built? What have you learned?

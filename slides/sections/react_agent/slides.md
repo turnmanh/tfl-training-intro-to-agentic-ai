@@ -180,6 +180,18 @@ align: center
 2. Implement more tools in the `src/tools` directory as needed. Feel free to
    implemented the suggested tools or create your own.
 
+<br>
+<br>
+
+<v-click>
+
+::box{align=center text=lg color=dark-blue}
+🔬 Feel free to try models of different complexities, e.g., gpt-5, mini, and nano.
+::
+
+</v-click>
+
+
 
 ---
 title: What have you built? What have you learned?
