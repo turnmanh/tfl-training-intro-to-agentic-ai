@@ -8,7 +8,7 @@ browserExporter: dev
 ---
 
 
-Maternus Herold <span class="font-light">(AI Researcher)</span><br/>
+**Maternus Herold** <span class="font-light">(AI Researcher)</span><br/>
 
 
 ---
