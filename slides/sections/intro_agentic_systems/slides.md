@@ -490,7 +490,7 @@ Orchestrator workflow. Illustration by Anthropic.
 
 :::box{color=white span=2}
 
-**When to use:** Complex tasks where subtasks can't be predicted. Key difference from parallelization: **flexibility** - subtasks determined by orchestrator based on input
+**When to use:** Complex tasks where subtasks can't be predicted. Difference from parallelization: **flexibility** - subtasks determined by orchestrator based on input
 
 <br>
 
