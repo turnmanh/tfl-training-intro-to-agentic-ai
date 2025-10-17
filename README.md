@@ -1,8 +1,11 @@
-# ReAct Agent from the Ground Up
+# TransferLab Training: Introduction to Agentic AI
 
-This repository demonstrates how to build a ReAct agent using LangChain and
-visualize it with LangGraph Studio. The agent can interact with the environment
-using tools.
+Welcome to the TransferLab Training on "Introduction to Agentic AI"! This
+repository contains all the materials you'll need for the workshop, including
+slides, code examples, and exercises.
+
+The agenda for the day is provided here:
+[agenda](./slides/sections/agenda/slides.md).
 
 ## Setup
 
@@ -12,10 +15,11 @@ Install the required dependencies:
 uv sync
 ```
 
+Populate the `.env` file with the respective API keys and adapt the
+configuration if applicable.
+
 Launch the LangGraph Studio to visualize and manage the agent via
 
 ```shell
 langgraph dev
 ```
-
-Make sure that a valid api key for LangSmith is set in the .env file. 
