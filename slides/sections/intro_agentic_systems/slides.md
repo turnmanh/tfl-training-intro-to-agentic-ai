@@ -401,6 +401,17 @@ subtitle: Agentic Building Blocks
 ::::imgx{src=./sections/shared_images/routing_workflow.png width=80}
 Routing workflow. Illustration by Anthropic.
 ::::
+
+<br>
+
+<v-click>
+
+::::box{color=dark-blue span=3}
+⁉️ How would you choose the models to use?
+::::
+
+</v-click>
+
 :::
 
 :::box{color=white span=2}
