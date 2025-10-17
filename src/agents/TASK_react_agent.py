@@ -29,9 +29,9 @@ def continue_tool_calls(state: State) -> str:
     last_message: AIMessage = state["messages"][-1]  # type: ignore
 
     if hasattr(last_message, "tool_calls") and last_message.tool_calls:
-        res = "continue"
+        # todo: define a condition to CONTINUE iterating to find a good answer.
     else:
-        res = "stop"
+        # todo: define a condition to STOP iterating to find a good answer.
 
     return res
 
@@ -48,8 +48,8 @@ flow = StateGraph(State)
 
 
 # Add the central nodes of an agentic system.
-flow.add_node("agent", invoke_agent)
-flow.add_node("tool_node", tool_node)
+# todo: add a node for the LLM / agent.
+# todo: add a node for the tools, i.e., the ToolNode.
 
 
 # Now, connect the nodes together using edges.
@@ -64,7 +64,7 @@ flow.add_conditional_edges(
     continue_tool_calls,
     {
         "continue": "tool_node",
-        "stop": END,
+        "stop": # todo: move to the correct next node,
     },
 )
 flow.add_edge("tool_node", "agent")

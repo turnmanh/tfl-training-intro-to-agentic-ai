@@ -45,14 +45,15 @@ async def create_react_agent_graph(mcp_session) -> CompiledStateGraph:
     return graph_react_agent
 
 
-async def main():
+async def stream_agent():
+    """Async. streaming invocation of the agent with memory. """
     # MultiServerMCPClient is stateless by default. Each tool invocation creates
     # a fresh MCP ClientSession, executes the tool, and then cleans up. Thus,
     # one could also skip this step and get the tools via await
     # client.get_tools().
     async with mcp_client.session(server_name="yahoo_finance") as mcp_session:
         agent_graph = await create_react_agent_graph(mcp_session)
-        
+
         while True:
             user_input = input("User: ")
             # Allow to stop the loop via commands.
@@ -69,7 +70,28 @@ async def main():
                 if message_chunk.content and isinstance(message_chunk, AIMessage):  # type: ignore
                     print(message_chunk.content, end="", flush=True)
             print("\n")
-            
+
+
+async def invoke_agent():
+    """Async. invocation of the agent with memory. """
+    async with mcp_client.session(server_name="yahoo_finance") as mcp_session:
+        agent_graph = await create_react_agent_graph(mcp_session)
+
+        while True:
+            user_input = input("User: ")
+            if user_input.lower() in {"exit", "quit", "q"}:
+                print("Exiting ...")
+                break
+
+            result = await agent_graph.ainvoke(
+                {"messages": [HumanMessage(content=user_input)]},
+            )
+
+            last_message = result["messages"][-1]
+            if hasattr(last_message, "content"):
+                print("Agent:", last_message.content)
+            print()
+
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(invoke_agent())
