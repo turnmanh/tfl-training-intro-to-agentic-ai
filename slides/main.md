@@ -26,3 +26,7 @@ src: ./sections/react_agent/slides.md
 ---
 src: ./sections/tools/slides.md
 ---
+
+---
+src: ./sections/memory/slides.md
+---
