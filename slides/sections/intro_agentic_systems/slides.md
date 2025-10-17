@@ -517,6 +517,17 @@ subtitle: Agentic Building Blocks
 ::::imgx{src=./sections/shared_images/evaluator_optimizer_workflow.png width=80}
 Evaluator-optimizer workflow. Illustration by Anthropic.
 ::::
+
+<br>
+
+<v-click>
+
+::::box{color=dark-blue span=3}
+⁉️ Where could this architecture be beneficial?
+::::
+
+</v-click>
+
 :::
 
 :::box{color=white span=2}
