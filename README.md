@@ -1,8 +1,9 @@
 # TransferLab Training: Introduction to Agentic AI
 
-Welcome to the TransferLab Training on "Introduction to Agentic AI"! This
-repository contains all the materials you'll need for the workshop, including
-slides, code examples, and exercises.
+Welcome to the TransferLab Training on ["Introduction to Agentic
+AI"](https://transferlab.ai/trainings/practical-agentic-ai/)! This repository
+contains all the materials you'll need for the workshop, including slides, code
+examples, and exercises.
 
 The agenda for the day is provided here:
 [agenda](./slides/sections/agenda/slides.md).
