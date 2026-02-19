@@ -1,0 +1,25 @@
+flowchart TD
+    START((Start)) --> planner
+
+    planner[Planner<br/>Create step-by-step plan]
+    executor[Executor<br/>Execute current step]
+    tool_node[Tool Node<br/>Run tool calls]
+    process_result[Process Result<br/>Record step & advance plan]
+    replanner[Replanner<br/>Adjust plan or finish]
+    responder[Responder<br/>Generate final answer]
+
+    planner --> executor
+    
+    executor --> continue_check{Tool calls?}
+    continue_check -->|continue| tool_node
+    continue_check -->|stop| process_result
+    
+    tool_node --> executor
+    
+    process_result --> replanner
+    
+    replanner --> plan_check{Plan empty?}
+    plan_check -->|continue| executor
+    plan_check -->|finish| responder
+    
+    responder --> END((End))

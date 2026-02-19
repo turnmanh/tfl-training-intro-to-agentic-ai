@@ -1,0 +1,11 @@
+flowchart TD
+    START((Start)) --> agent
+
+    agent[Agent<br/>Invoke LLM with tools]
+    tool_node[Tool Node<br/>Execute tool calls]
+
+    agent --> check{Tool calls?}
+    check -->|continue| tool_node
+    check -->|stop| END((End))
+    
+    tool_node --> agent
