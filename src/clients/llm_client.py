@@ -1,8 +1,14 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_openai import ChatOpenAI
 
-from src.config.model_config import gemini_flash, openai_gpt5
+from src.config.model_config import (
+    OpenAIModelConfig, 
+    gemini_flash, 
+    openai_gpt4o_mini, 
+    openai_gpt5
+)
 
+openai_model: OpenAIModelConfig = openai_gpt4o_mini
 
 # Initialize different LLM clients based on configurations.
 llm_client_gemini = ChatGoogleGenerativeAI(
@@ -12,9 +18,9 @@ llm_client_gemini = ChatGoogleGenerativeAI(
 )
 
 llm_client_openai = ChatOpenAI(
-    model=openai_gpt5.model_name,
-    temperature=openai_gpt5.temperature,
-    max_tokens=openai_gpt5.max_output_tokens,  # type: ignore
+    model=openai_model.model_name,
+    temperature=openai_model.temperature,
+    max_tokens=openai_model.max_output_tokens,  # type: ignore
 )
 
 # Select the LLM client to use here.

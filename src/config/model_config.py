@@ -31,6 +31,14 @@ gemini_flash = GeminiModelConfig(
 )
 
 
+openai_gpt4o_mini = OpenAIModelConfig(
+    model_name="gpt-4o-mini",
+    api_key=os.getenv("OPENAI_API_KEY", ""),
+    temperature=0.7,
+    max_output_tokens=2048 * 2,
+)
+
+
 openai_gpt5 = OpenAIModelConfig(
     api_key=os.getenv("OPENAI_API_KEY", ""),
     temperature=0.7,
