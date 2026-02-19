@@ -48,7 +48,7 @@ def planner(state: State) -> dict:
         content="""You are a planner. Given a user request, create a step-by-step plan to accomplish the task.
 
 Rules:
-- Maximum 5 steps
+- Maximum 5 steps; less is better if it can accomplish the task.
 - Each step should be a short, high-level action (max 10 words)
 - Do not include detailed instructions or measurements
 - Focus on the key milestones, not every sub-task"""
