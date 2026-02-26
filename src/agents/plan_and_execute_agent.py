@@ -10,10 +10,6 @@ from src.clients.llm_client import llm_client
 from src.tools import tools
 
 
-# Bind the tools to the LLM client.
-llm_client_with_tools = llm_client.bind_tools(tools)
-
-
 # Initialize the tool node that looks for tool_calls within the messages.
 tool_node = ToolNode(tools)
 
@@ -32,6 +28,8 @@ class Plan(BaseModel):
 class State(TypedDict):
     """State of the plan-and-execute agent."""
 
+    # Regular fields are replaced with new values, while annotated fields are
+    # merged depending on the operator.
     input: str
     plan: list[str]
     past_steps: Annotated[list[tuple[str, str]], operator.add]
@@ -61,6 +59,8 @@ Rules:
 
     print(f"\nGenerated Plan: {plan.steps}")
 
+    # Langgraph automatically merges partial returns.
+    # Return the plan steps to be added to the state.
     return {"plan": plan.steps}
 
 
@@ -70,6 +70,10 @@ def executor(state: State) -> dict:
 
     executor_prompt = SystemMessage(
         content=f"""You are an executor. Execute the following step using available tools if needed.
+
+You can imagine that you have access to various tools that can help you
+accomplish the step. Just imagine you've called the tool and got the result
+back, and provide the result in your response. Do not call the tools directly, just provide the result as if you had called them.
 
 Current step to execute: {current_step}
 
@@ -83,7 +87,7 @@ Execute this step and provide a clear result."""
 
     # Start fresh messages for this execution step
     messages = [executor_prompt, HumanMessage(content=f"Execute: {current_step}")]
-    response: BaseMessage = llm_client_with_tools.invoke(messages)
+    response: BaseMessage = llm_client.invoke(messages)  # Using client without tools for this example.
 
     return {
         "messages": [
@@ -137,6 +141,7 @@ Rules:
 - If there are still steps to do, return the remaining steps in order.
 - Add new steps if necessary, but keep the plan concise (max 5 steps total).
 - Be as efficient as possible and avoid unnecessary steps.
+- For hypothetical or roleplay tasks (cooking, creative writing, etc.), once you have a complete result, return an empty plan.
 """
     )
 
