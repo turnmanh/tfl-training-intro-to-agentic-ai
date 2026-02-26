@@ -48,7 +48,7 @@ flow = StateGraph(State)
 
 
 # Add the central nodes of an agentic system.
-# todo: add a node for the LLM / agent.
+# todo: add a node for the LLM / agent using flow.add_node(...) .
 # todo: add a node for the tools, i.e., the ToolNode.
 
 
