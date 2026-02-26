@@ -13,10 +13,9 @@ layout: Section
 title: Memory in Agents
 ---
 
-::::imgx{src=./sections/shared_images/memory_short_vs_long.png}
+::imgx{src=./sections/shared_images/memory_short_vs_long.png width=60}
 Illustration of Memory in Agentic Systems. Illustration by LangChain.
-::::
-
+::
 
 ---
 title: Managing Short Term Memory
