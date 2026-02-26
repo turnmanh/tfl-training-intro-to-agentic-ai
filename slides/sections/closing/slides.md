@@ -10,6 +10,131 @@ layout: Section
 
 
 ---
+title: When Is Agentic AI the Right Choice?
+---
+
+Agentic AI is most justified when the task is goal-directed, multi-step, and the
+execution path is difficult to predefine in advance.
+
+:vspace{size=md}
+
+::grid{columns=2 width=100}
+:::field{}
+
+* **Open-ended execution**:
+    * Unpredictable number of steps
+    * Cannot be reliably implemented as fixed workflow
+* **Essential tools use**:
+    * Requires APIs, databases, code execution, etc.
+    * Real-world interaction is part of the task
+* **Feedback loops available**:
+    * The system can validate progress using tools, tests, rules, and external
+      state
+
+:::
+:::field{}
+
+* **Clear success criteria**:
+    * Objective definition of done
+* **Safe execution environment**:
+    * Sandbox or execution harness
+    * Human checkpoints and oversight
+* **Sufficient business value**:
+    * Justify latency, costs, and engineering complexity
+
+:::
+::
+
+---
+title: "Levels of autonomy: augmentation, automation, and autonomous operations"
+subtitle: Deployment patterns across organizational layers
+align: center
+justify: center
+---
+
+::grid{columns=3 width=100}
+:::box{color=white}
+**Individual augmentation**
+
+* Personal assistants, task automation, decision support
+* User-scoped permissions, personal context management
+:::
+
+:::box{color=blue}
+**Process automation**
+
+* Agent handles a (sub)process end-to-end
+* Integration with existing systems and workflows
+* System-level permissions
+:::
+
+:::box{color=dark-blue}
+**Autonomous operations**
+
+* Agent handles ongoing processes with minimal intervention
+* Robust error handling, escalation protocols, logging
+:::
+::
+
+:vspace{size=lg}
+
+:img{src=./img/increasing-autonomy.drawio.svg w=200 mx=auto}
+
+:vspace{size=md}
+
+::div{text=sm}
+**Note:** You do not aim for increasing autonomy. In practice, you pick the
+lowest level that meets the use case.
+::
+
+
+
+---
+title: "Levels of human involvement: in-the-loop, on-the-loop, over-the-loop"
+subtitle: Deployment patterns across organizational layers
+---
+
+The level of human involvement and oversight depends on risk, reversibility, and
+the required accountability for a use case:
+
+:vspace{size=lg}
+
+::grid{columns=3}
+:::box{color=white}
+**Human-in-the-loop**
+
+Human approval is required before critical actions. AI produces suggestions,
+human validates, edits, or rejects. Emphasis on oversight and accountability.
+:::
+
+:::box{color=blue}
+**Human-on-the-loop**
+
+AI executes autonomously within boundaries. Human monitors and can intervene.
+Alerts and logging is in place. Focus on supervision.
+:::
+
+:::box{color=dark-blue}
+**Human-out-the-loop**
+
+AI acts autonomously end-to-end. No real-time human supervision. Relies on
+validation, testing, and safeguards. Periodic human audits.
+:::
+
+:::field{justify=center text=sm}
+**high-risk** and regulated environments
+:::
+
+:::field{justify=center text=sm}
+**medium-risk** operational workflows
+:::
+
+::field{justify=center text=sm}
+**low-risk** or reversible actions
+::
+::grid
+
+---
 title: Wrapping Up - Three Core Principles Building Agentic Systems 
 ---
 
