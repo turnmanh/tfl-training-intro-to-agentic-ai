@@ -4,11 +4,12 @@ from langchain_openai import ChatOpenAI
 from src.config.model_config import (
     OpenAIModelConfig, 
     gemini_flash, 
+    openai_gpt41_nano,
     openai_gpt4o_mini, 
     openai_gpt5
 )
 
-openai_model: OpenAIModelConfig = openai_gpt4o_mini
+openai_model: OpenAIModelConfig = openai_gpt41_nano
 
 # Initialize different LLM clients based on configurations.
 llm_client_gemini = ChatGoogleGenerativeAI(
