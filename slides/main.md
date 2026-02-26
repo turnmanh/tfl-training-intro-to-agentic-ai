@@ -9,6 +9,7 @@ browserExporter: dev
 
 
 **Maternus Herold** <span class="font-light">(AI Researcher)</span><br/>
+**Jan Willem Kleinrouweler** <span class="font-light">(ML Engineer)</span><br/>
 
 
 ---

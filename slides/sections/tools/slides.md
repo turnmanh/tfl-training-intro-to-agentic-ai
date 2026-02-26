@@ -182,6 +182,50 @@ MCP Registry
 
 
 ---
+title: Every day more tools are being standardized and shared 
+---
+
+::grid{columns=2 width=100 gap=md}
+
+:::field{align=top span=1}
+::::imgx{src=./sections/shared_images/ucp_banner.jpeg width=90}
+Universal Connector Protocol (UCP)
+::::
+:::
+
+<v-click>
+
+:::field{align=top span=1}
+HTML with WebMCP Annotations
+```html
+<form 
+  action="/search" 
+  method="POST"
+  **tool-name="search_flights"** **tool-description="Search for available flights based on origin and date"**
+  **tool-autosubmit**>
+    <input name="origin" type="text" placeholder="From...">
+    <input name="departure_date" type="date">
+    <button type="submit">Search</button>
+</form>
+```
+
+Standard HTML
+```html
+<form action="/search" method="POST">
+    <input name="origin" type="text" placeholder="From...">
+    <input name="departure_date" type="date">
+    <button type="submit">Search</button>
+</form>
+```
+
+:::
+
+</v-click>
+
+::
+
+
+---
 title: Model Context Protocol for Reference
 ---
 
