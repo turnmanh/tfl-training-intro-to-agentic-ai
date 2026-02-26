@@ -1,5 +1,7 @@
 # Notes on Agents
 
+We provided the two agent architectures as Mermaid flowcharts in `./charts/`.
+
 ## Reasoning & Acting Agent
 
 **Q:** What are the potential pitfalls of using a reasoning and acting agent on
