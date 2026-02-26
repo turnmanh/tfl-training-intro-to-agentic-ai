@@ -271,14 +271,15 @@ Given:
 @jira_mcp.tool(tags={"jira", "read"})
 async def get_issue(
     ctx: Context,
+    issue_key: ...,
     ...
 ```
 
-The agent's input is parsed as desired type, e.g., Context. This is achieved
-using the **spread operator** or **dictionary unpacking**.
+The agent's input is parsed via **dictionary unpacking** and type checked using
+Pydantic. Note: Context is injected automatically.
 
 ```python
-get_issue(ctx=Context(**llm_params), ...)
+get_issue(ctx=Context, **llm_params)
 ```
 
 
