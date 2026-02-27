@@ -3,7 +3,7 @@ import operator
 
 from typing import Annotated, TypedDict
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent as create_react_agent
 from langgraph.graph.state import CompiledStateGraph
 from langchain_mcp_adapters.tools import load_mcp_tools
 
