@@ -1,3 +1,21 @@
+"""
+This module implements a ReAct (Reasoning and Acting) agent using LangGraph.
+
+The ReAct pattern allows the agent to:
+1. Reason about a user's request
+2. Decide if it needs to use external tools to gather information
+3. Execute those tools
+4. Reason again based on the tool outputs
+5. Formulate a final response
+
+Key components:
+- StateGraph: Defines the flow of the agent
+- Agent Node: The LLM processing step
+- Tool Node: Executes selected tools
+- Conditional Logic: Determines whether to loop back to tools or finish
+"""
+
+
 import operator
 
 from typing import Annotated, TypedDict
