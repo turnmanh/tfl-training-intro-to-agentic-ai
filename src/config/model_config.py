@@ -16,7 +16,8 @@ class ModelConfig(BaseModel):
 class GeminiModelConfig(ModelConfig):
     """Configuration specific to Gemini models."""
     model_name: str = "gemini-2.5-flash" 
-    max_output_tokens: int = Field(default=1024, description="Maximum number of output tokens.")
+    base_url: str = Field(..., description="Base URL for the Gemini API.")
+    max_output_tokens: int = Field(default=2048, description="Maximum number of output tokens.")
 
 
 class OpenAIModelConfig(ModelConfig):
@@ -27,6 +28,7 @@ class OpenAIModelConfig(ModelConfig):
 
 gemini_flash = GeminiModelConfig(
     api_key=os.getenv("GOOGLE_API_KEY", ""),
+    base_url=os.getenv("GOOGLE_BASE_URL", ""),
     temperature=0.7,
 )
 
