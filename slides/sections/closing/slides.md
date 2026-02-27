@@ -223,3 +223,24 @@ We'd love to hear your feedback! ➡️
 
 ::
 
+
+---
+title: What's to come?
+---
+
+::box{color=white span=3 height=15}
+-> Plan and Execute agent pattern
+
+<v-click>
+
+-> Python REPL as tool
+
+</v-click>
+
+<v-click>
+
+-> Plotting as tool
+
+</v-click>
+
+::
