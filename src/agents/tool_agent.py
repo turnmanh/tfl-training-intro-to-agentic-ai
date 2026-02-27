@@ -2,19 +2,14 @@ import asyncio
 import operator
 
 from typing import Annotated, TypedDict
-from langchain import hub
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent as create_react_agent
 from langgraph.graph.state import CompiledStateGraph
 from langchain_mcp_adapters.tools import load_mcp_tools
 
 # Note: tools are now provided async by a client. 
 from src.clients.llm_client import llm_client
 from src.clients.mcp_client import mcp_client
-
-# todo: add ReAct prompt template. 
-# Pull a prompt template from the Hub.
-# agent_prompt = hub.pull("hwchase17/react")
 
 
 class State(TypedDict):

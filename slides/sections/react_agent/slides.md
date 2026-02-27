@@ -82,6 +82,15 @@ align: center
 
 
 ---
+title: Adding a new tool the ReAct Agent ⌨️
+text: lg
+align: center
+---
+
+Together: let's enhance the ReAct agent using Web Search via Tavily API. 
+
+
+---
 title: Extending the ReAct Agent with More Tools ⌨️
 text: lg
 align: center
