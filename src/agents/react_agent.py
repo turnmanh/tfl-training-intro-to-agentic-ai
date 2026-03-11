@@ -106,7 +106,7 @@ def stream_react_agent():
         state: State = {"messages": [HumanMessage(content=user_input)]}
         for msg_chunk, _ in app.stream(state, stream_mode="messages"):  # type: ignore
             if msg_chunk.content and isinstance(msg_chunk, AIMessage):  # type: ignore
-                print(msg_chunk.content, end="|", flush=True)
+                print(msg_chunk.text, end="|", flush=True)
         print("\n")
 
 
