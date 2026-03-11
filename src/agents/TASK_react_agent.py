@@ -48,6 +48,7 @@ def continue_tool_calls(state: State) -> str:
 
     if hasattr(last_message, "tool_calls") and last_message.tool_calls:
         # todo: define a condition to CONTINUE iterating to find a good answer.
+        # Note, we have initialized the return value above.
     else:
         # todo: define a condition to STOP iterating to find a good answer.
 
@@ -66,8 +67,10 @@ flow = StateGraph(State)
 
 
 # Add the central nodes of an agentic system.
-# todo: add a node for the LLM / agent using flow.add_node(...) .
-# todo: add a node for the tools, i.e., the ToolNode.
+# todo: add a node for the LLM / agent using flow.add_node(...).
+# Note, we've defined a method above to invoke the agent.
+
+# todo: add a node for the tools, i.e., the ToolNode, which was initialized above. 
 
 
 # Now, connect the nodes together using edges.
