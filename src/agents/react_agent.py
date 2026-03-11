@@ -130,5 +130,4 @@ def invoke_react_agent():
 
 
 if __name__ == "__main__":
-    # invoke_react_agent()
-    stream_react_agent()
+    invoke_react_agent()
