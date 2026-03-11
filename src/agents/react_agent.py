@@ -15,11 +15,10 @@ Key components:
 - Conditional Logic: Determines whether to loop back to tools or finish
 """
 
-
 import operator
 
 from typing import Annotated, TypedDict
-from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
+from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, ToolMessage
 from langgraph.prebuilt import ToolNode
 from langgraph.graph import StateGraph, END, START
 
@@ -48,6 +47,8 @@ def continue_tool_calls(state: State) -> str:
 
     if hasattr(last_message, "tool_calls") and last_message.tool_calls:
         res = "continue"
+        num_calls = len(last_message.tool_calls)
+        print(f" >>> Tool calls detected [{num_calls}], continuing to tool node...", end="\n\n")
     else:
         res = "stop"
 
@@ -94,7 +95,6 @@ app = flow.compile()
 
 def stream_react_agent():
     """Run the agent graph in a loop."""
-    state: State = {"messages": []}
 
     while True:
         user_input = input("User: ")
@@ -103,7 +103,7 @@ def stream_react_agent():
             print("Exiting...")
             break
 
-        state["messages"].append(HumanMessage(content=user_input))
+        state: State = {"messages": [HumanMessage(content=user_input)]}
         for msg_chunk, _ in app.stream(state, stream_mode="messages"):  # type: ignore
             if msg_chunk.content and isinstance(msg_chunk, AIMessage):  # type: ignore
                 print(msg_chunk.content, end="|", flush=True)
@@ -112,7 +112,6 @@ def stream_react_agent():
 
 def invoke_react_agent():
     """Run the agent graph in a loop."""
-    state: State = {"messages": []}
 
     while True:
         user_input = input("User: ")
@@ -121,14 +120,15 @@ def invoke_react_agent():
             print("Exiting...")
             break
 
-        state["messages"].append(HumanMessage(content=user_input))
+        state: State = {"messages": [HumanMessage(content=user_input)]}
         result = app.invoke(state)
-       
+
         last_message = result["messages"][-1]
         if isinstance(last_message, AIMessage) and last_message.content:
-            print(last_message.content)  # type: ignore
+            print(last_message.text)  # type: ignore
         print()
 
 
 if __name__ == "__main__":
-    invoke_react_agent()
+    # invoke_react_agent()
+    stream_react_agent()

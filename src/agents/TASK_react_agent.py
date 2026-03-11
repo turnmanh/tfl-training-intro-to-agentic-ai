@@ -49,6 +49,10 @@ def continue_tool_calls(state: State) -> str:
     if hasattr(last_message, "tool_calls") and last_message.tool_calls:
         # todo: define a condition to CONTINUE iterating to find a good answer.
         # Note, we have initialized the return value above.
+
+        # We will print the number of tool calls detected for debugging purposes.
+        num_calls = len(last_message.tool_calls)
+        print(f" >>> Tool calls detected [{num_calls}], continuing to tool node...", end="\n\n")
     else:
         # todo: define a condition to STOP iterating to find a good answer.
 
@@ -97,7 +101,6 @@ app = flow.compile()
 
 def stream_react_agent():
     """Run the agent graph in a loop."""
-    state: State = {"messages": []}
 
     while True:
         user_input = input("User: ")
@@ -106,7 +109,7 @@ def stream_react_agent():
             print("Exiting...")
             break
 
-        state["messages"].append(HumanMessage(content=user_input))
+        state: State = {"messages": [HumanMessage(content=user_input)]}
         for msg_chunk, _ in app.stream(state, stream_mode="messages"):  # type: ignore
             if msg_chunk.content and isinstance(msg_chunk, AIMessage):  # type: ignore
                 print(msg_chunk.content, end="|", flush=True)
@@ -115,7 +118,6 @@ def stream_react_agent():
 
 def invoke_react_agent():
     """Run the agent graph in a loop."""
-    state: State = {"messages": []}
 
     while True:
         user_input = input("User: ")
@@ -124,12 +126,12 @@ def invoke_react_agent():
             print("Exiting...")
             break
 
-        state["messages"].append(HumanMessage(content=user_input))
+        state: State = {"messages": [HumanMessage(content=user_input)]}
         result = app.invoke(state)
        
         last_message = result["messages"][-1]
         if isinstance(last_message, AIMessage) and last_message.content:
-            print(last_message.content)  # type: ignore
+            print(last_message.text)  # type: ignore
         print()
 
 
