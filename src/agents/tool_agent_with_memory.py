@@ -1,12 +1,27 @@
+"""
+This module implements a ReAct agent with memory using LangGraph checkpointing.
+
+The memory-enabled agent extends the basic ReAct pattern by adding:
+1. Persistent conversation history across interactions
+2. Thread-based checkpointing for state management
+3. Ability to recall previous context within a session
+
+Key components:
+- InMemorySaver: Stores checkpoints for short-term memory within threads
+- MCP Tools: Dynamically loaded tools from an MCP server
+- create_react_agent: Pre-built agent factory from LangChain
+- Thread Config: Enables stateful conversations via thread IDs
+"""
+
+
 import asyncio
 import operator
 
 from typing import Annotated, TypedDict
-from langchain import hub
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.checkpoint.memory import InMemorySaver
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent as create_react_agent
 from langgraph.graph.state import CompiledStateGraph
 from langchain_mcp_adapters.tools import load_mcp_tools
 
@@ -15,7 +30,7 @@ from src.clients.llm_client import llm_client
 from src.clients.mcp_client import mcp_client
 
 
-# Create a checkpoint saver to store the state of each thread in memory.
+# todo: Create a checkpoint saver to store the state of each thread in memory.
 checkpoint_saver = InMemorySaver()
 
 
@@ -41,6 +56,7 @@ async def create_react_agent_graph(mcp_session) -> CompiledStateGraph:
     tools_mcp = await load_mcp_tools(mcp_session)
     tools.extend(tools_mcp)
 
+    # todo: add checkpointer
     graph_react_agent = create_react_agent(
         llm_client, tools, checkpointer=checkpoint_saver
     )
@@ -57,6 +73,7 @@ async def stream_agent():
     async with mcp_client.session(server_name="yahoo_finance") as mcp_session:
         agent_graph = await create_react_agent_graph(mcp_session)
 
+        # todo: create config
         # Provide a thread ID to maintain memory across calls. Within each
         # thread, the checkpointer will save the state after each invocation.
         config: RunnableConfig = {"configurable": {"thread_id": 1}}
@@ -70,6 +87,7 @@ async def stream_agent():
 
             # Stream the agent's response.
             print("Agent: ", end="", flush=True)
+            # todo: use the config 
             async for message_chunk, _ in agent_graph.astream(
                 {"messages": [HumanMessage(content=user_input)]},
                 stream_mode="messages",
@@ -91,7 +109,7 @@ async def invoke_agent():
             if user_input.lower() in {"exit", "quit", "q"}:
                 print("Exiting ...")
                 break
-
+            # todo: use the config
             result = await agent_graph.ainvoke(
                 {"messages": [HumanMessage(content=user_input)]}, config=config
             )

@@ -1,3 +1,21 @@
+"""
+This module implements a ReAct (Reasoning and Acting) agent using LangGraph.
+
+The ReAct pattern allows the agent to:
+1. Reason about a user's request
+2. Decide if it needs to use external tools to gather information
+3. Execute those tools
+4. Reason again based on the tool outputs
+5. Formulate a final response
+
+Key components:
+- StateGraph: Defines the flow of the agent
+- Agent Node: The LLM processing step
+- Tool Node: Executes selected tools
+- Conditional Logic: Determines whether to loop back to tools or finish
+"""
+
+
 import operator
 
 from typing import Annotated, TypedDict
@@ -30,6 +48,11 @@ def continue_tool_calls(state: State) -> str:
 
     if hasattr(last_message, "tool_calls") and last_message.tool_calls:
         # todo: define a condition to CONTINUE iterating to find a good answer.
+        # Note, we have initialized the return value above.
+
+        # We will print the number of tool calls detected for debugging purposes.
+        num_calls = len(last_message.tool_calls)
+        print(f" >>> Tool calls detected [{num_calls}], continuing to tool node...", end="\n\n")
     else:
         # todo: define a condition to STOP iterating to find a good answer.
 
@@ -48,8 +71,10 @@ flow = StateGraph(State)
 
 
 # Add the central nodes of an agentic system.
-# todo: add a node for the LLM / agent using flow.add_node(...) .
-# todo: add a node for the tools, i.e., the ToolNode.
+# todo: add a node for the LLM / agent using flow.add_node(...).
+# Note, we've defined a method above to invoke the agent.
+
+# todo: add a node for the tools, i.e., the ToolNode, which was initialized above. 
 
 
 # Now, connect the nodes together using edges.
@@ -76,7 +101,6 @@ app = flow.compile()
 
 def stream_react_agent():
     """Run the agent graph in a loop."""
-    state: State = {"messages": []}
 
     while True:
         user_input = input("User: ")
@@ -85,16 +109,15 @@ def stream_react_agent():
             print("Exiting...")
             break
 
-        state["messages"].append(HumanMessage(content=user_input))
+        state: State = {"messages": [HumanMessage(content=user_input)]}
         for msg_chunk, _ in app.stream(state, stream_mode="messages"):  # type: ignore
             if msg_chunk.content and isinstance(msg_chunk, AIMessage):  # type: ignore
-                print(msg_chunk.content, end="|", flush=True)
+                print(msg_chunk.text, end="|", flush=True)
         print("\n")
 
 
 def invoke_react_agent():
     """Run the agent graph in a loop."""
-    state: State = {"messages": []}
 
     while True:
         user_input = input("User: ")
@@ -103,12 +126,12 @@ def invoke_react_agent():
             print("Exiting...")
             break
 
-        state["messages"].append(HumanMessage(content=user_input))
+        state: State = {"messages": [HumanMessage(content=user_input)]}
         result = app.invoke(state)
        
         last_message = result["messages"][-1]
         if isinstance(last_message, AIMessage) and last_message.content:
-            print(last_message.content)  # type: ignore
+            print(last_message.text)  # type: ignore
         print()
 
 
